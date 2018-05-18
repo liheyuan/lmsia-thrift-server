@@ -1,9 +1,3 @@
-/**
- * @(#)ThriftServer.java, Aug 17, 2017.
- * <p>
- * Copyright 2017 fenbi.com. All rights reserved.
- * FENBI.COM PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package com.coder4.lmsia.thrift.server;
 
 import org.apache.thrift.TProcessor;
