@@ -9,7 +9,7 @@ targetCompatibility = 1.8
 // Use as maven groupId/artifactId/version
 group = 'com.coder4.lmsia'
 project.archivesBaseName = 'thrift-server'
-project.version = '0.0.1'
+project.version = '0.0.2'
 
 // source & javadoc pom
 task sourcesJar(type: Jar, dependsOn: classes) {
