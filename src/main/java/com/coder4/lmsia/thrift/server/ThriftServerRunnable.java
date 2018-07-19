@@ -1,5 +1,6 @@
 package com.coder4.lmsia.thrift.server;
 
+import com.coder4.sbmvt.thrift.common.TraceBinaryProtocol.Factory;
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocolFactory;
@@ -16,40 +17,27 @@ import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import static com.coder4.sbmvt.thrift.common.Constants.THRIFT_CORE_THREADS;
+import static com.coder4.sbmvt.thrift.common.Constants.THRIFT_MAX_FRAME_SIZE;
+import static com.coder4.sbmvt.thrift.common.Constants.THRIFT_MAX_READ_BUF_SIZE;
+import static com.coder4.sbmvt.thrift.common.Constants.THRIFT_MAX_THREADS;
+import static com.coder4.sbmvt.thrift.common.Constants.THRIFT_PORT;
+import static com.coder4.sbmvt.thrift.common.Constants.THRIFT_SELECTOR_THREADS;
+import static com.coder4.sbmvt.thrift.common.Constants.THRIFT_TCP_BACKLOG;
+import static com.coder4.sbmvt.thrift.common.Constants.THRIFT_TIMEOUT;
+
 /**
  * @author coder4
  */
 public class ThriftServerRunnable implements Runnable {
 
-    private static final int THRIFT_PORT = 3000;
-
-    private static final int THRIFT_TIMEOUT = 5000;
-
-    private static final int THRIFT_TCP_BACKLOG = 5000;
-
-    private static final int THRIFT_CORE_THREADS = 128;
-
-    private static final int THRIFT_MAX_THREADS = 256;
-
-    private static final int THRIFT_SELECTOR_THREADS = 16;
-
-    private static final TProtocolFactory THRIFT_PROTOCOL_FACTORY = new TBinaryProtocol.Factory();
-
-    // 16MB
-    private static final int THRIFT_MAX_FRAME_SIZE = 16 * 1024 * 1024;
-
-    // 4MB
-    private static final int THRIFT_MAX_READ_BUF_SIZE = 4 * 1024 * 1024;
+    private static final Factory THRIFT_PROTOCOL_FACTORY = new Factory();
 
     protected ExecutorService threadPool;
 
     protected TServer server;
 
-    protected Thread thread;
-
     private TProcessor processor;
-
-    private boolean isDestroy = false;
 
     public ThriftServerRunnable(TProcessor processor) {
         this.processor = processor;

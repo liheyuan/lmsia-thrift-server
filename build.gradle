@@ -9,7 +9,7 @@ targetCompatibility = 1.8
 // Use as maven groupId/artifactId/version
 group = 'com.coder4.lmsia'
 project.archivesBaseName = 'thrift-server'
-project.version = '0.0.2'
+project.version = '0.0.3'
 
 // source & javadoc pom
 task sourcesJar(type: Jar, dependsOn: classes) {
@@ -23,9 +23,11 @@ artifacts {
 
 repositories {
     maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
+    compile 'com.github.liheyuan:lmsia-thrift-common:0.0.2'
     compileOnly 'ch.qos.logback:logback-classic:1.2.3'
     compileOnly 'org.springframework.boot:spring-boot-autoconfigure:1.5.6.RELEASE'
     compileOnly 'org.apache.thrift:libthrift:0.9.3'
